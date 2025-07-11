@@ -48,6 +48,7 @@ local keymap = vim.keymap
 
 keymap.set("n", "<leader>e", "<cmd>Explore<CR>", { desc = "Open Explorer" })
 keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quite window" })
+keymap.set("n", "<leader>nh", "<cmd>noh<CR>", { desc = "Clear highlight" })
 
 -- Split Screens
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) 
