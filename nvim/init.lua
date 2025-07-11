@@ -110,11 +110,11 @@ vim.keymap.set('n', '<leader>j', '<CMD>lua require("FTerm").toggle()<CR>')
 vim.keymap.set('t', '<ESC>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
 
 -- PLUGINS LSP KEYMAPS
-keymap.set("n", "<leader>sh", "<cmd>LspHover<CR>", { desc = "Show floating hover window" }) 
-keymap.set("n", "<leader>si", "<cmd>LspPeekImplementation<CR>", { desc = "Show implementation in floating window" }) 
-keymap.set("n", "<leader>sgd", "<cmd>LspDefinition<CR>", { desc = "Go to definition in a new window" }) 
-keymap.set("n", "<leader>sd", "<cmd>LspPeekDefinition<CR>", { desc = "Go to definition in a floating window" }) 
-keymap.set("n", "<leader>sw", "<cmd>LspReferences<CR>", { desc = "Show symbol references in a new window" }) 
+keymap.set("n", "<leader>lsh", "<cmd>LspHover<CR>", { desc = "Show floating hover window" }) 
+keymap.set("n", "<leader>lsi", "<cmd>LspPeekImplementation<CR>", { desc = "Show implementation in floating window" }) 
+keymap.set("n", "<leader>lsgd", "<cmd>LspDefinition<CR>", { desc = "Go to definition in a new window" }) 
+keymap.set("n", "<leader>lsd", "<cmd>LspPeekDefinition<CR>", { desc = "Go to definition in a floating window" }) 
+keymap.set("n", "<leader>lsw", "<cmd>LspReferences<CR>", { desc = "Show symbol references in a new window" }) 
 keymap.set("n", "<leader>lw", "<cmd>LspRename<CR>", { desc = "Rename in entire opened file" }) 
 
 -- LSPs
