@@ -40,7 +40,7 @@ alias ll="ls -l"
 ### TABBY
 ###### ref: https://tabby.sh/
 
-- Font: Courier New 14
+- Font: Andale Mono 14
 - Settings: `Appearence -> Allow font ligature`
     > Para mostrar os icones do Yazi
 - Color Scheme: Brogrammer
