@@ -167,7 +167,7 @@ Install the theme:
 ya pkg add gosxrgxx/flexoki-dark
 ```
 
-Paste the theme name in `.config/yazi/theme.toml`:
+Create a file named `theme.toml` in `.config/yazi/` and paste:
 [flavor]
 dark = "flexoki-dark"
 
