@@ -1,0 +1,47 @@
+local dap = require("dap")
+local dapui = require("dapui")
+
+dapui.setup({
+  layouts = {
+    -- {
+    --   elements = {
+    --     { id = "scopes", size = 0.35 },
+    --     { id = "breakpoints", size = 0.15 },
+    --     { id = "stacks", size = 0.25 },
+    --     { id = "watches", size = 0.25 },
+    --   },
+    --   size = 40,
+    --   position = "left",
+    -- },
+    {
+      elements = {
+        "repl",
+        "console",
+      },
+      size = 20,
+      position = "bottom",
+    },
+  },
+})
+
+-- Open/close automatically
+dap.listeners.after.event_initialized["dapui"] = function()
+  dapui.open()
+end
+
+dap.listeners.before.event_terminated["dapui"] = function()
+  dapui.close()
+end
+
+dap.listeners.before.event_exited["dapui"] = function()
+  dapui.close()
+end
+
+dap.listeners.after.event_output["dapui"] = function(session, body)
+  if body.category == "console" then
+    vim.schedule(function()
+      require("dapui").eval(body.output)
+    end)
+  end
+end
+
