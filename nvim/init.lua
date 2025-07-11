@@ -54,17 +54,12 @@ keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) 
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) 
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) 
--- Move cursos between splits
--- keymap.set("n", "C-h", "<C-w>h", { desc = "Move focus to left" })
--- keymap.set("n", "C-l", "<C-w>l", { desc = "Move focus to right" })
--- keymap.set("n", "C-k", "<C-w>k", { desc = "Move focus up" })
--- keymap.set("n", "C-j", "<C-w>j", { desc = "Move focus bottom" })
 
 -- Tabs
 keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) 
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) 
-keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) 
-keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) 
+keymap.set("n", "<Tab>", "<cmd>tabn<CR>", { desc = "Go to next tab" }) 
+keymap.set("n", "<S-Tab>", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) 
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
 
@@ -102,7 +97,6 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 keymap.set("n", "<leader>fy", "<cmd>Yazi<CR>", { desc = "Open yazi floating window" })
 
 -- Terminal
-
 require'FTerm'.setup({
     border = 'single',
     dimensions  = {
@@ -112,13 +106,14 @@ require'FTerm'.setup({
 })
 
 vim.keymap.set('n', '<leader>j', '<CMD>lua require("FTerm").toggle()<CR>')
-vim.keymap.set('t', '<ESC><leader>j', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
+vim.keymap.set('t', '<ESC>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
 
 -- PLUGINS LSP KEYMAPS
-keymap.set("n", "<leader>lsh", "<cmd>LspHover<CR>", { desc = "Show floating hover window" }) 
-keymap.set("n", "<leader>lsi", "<cmd>LspPeekImplementation<CR>", { desc = "Show implementation in floating window" }) 
-keymap.set("n", "<leader>lsd", "<cmd>LspDefinition<CR>", { desc = "Go to definition in a new window" }) 
-keymap.set("n", "<leader>lsw", "<cmd>LspReferences<CR>", { desc = "Show symbol references in a new window" }) 
+keymap.set("n", "<leader>sh", "<cmd>LspHover<CR>", { desc = "Show floating hover window" }) 
+keymap.set("n", "<leader>si", "<cmd>LspPeekImplementation<CR>", { desc = "Show implementation in floating window" }) 
+keymap.set("n", "<leader>sgd", "<cmd>LspDefinition<CR>", { desc = "Go to definition in a new window" }) 
+keymap.set("n", "<leader>sd", "<cmd>LspPeekDefinition<CR>", { desc = "Go to definition in a floating window" }) 
+keymap.set("n", "<leader>sw", "<cmd>LspReferences<CR>", { desc = "Show symbol references in a new window" }) 
 keymap.set("n", "<leader>lw", "<cmd>LspRename<CR>", { desc = "Rename in entire opened file" }) 
 
 -- LSPs
