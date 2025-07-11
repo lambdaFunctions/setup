@@ -40,7 +40,7 @@ alias ll="ls -l"
 ### TABBY
 ###### ref: https://tabby.sh/
 
-- Font: Courier New 14
+- Font: Andale Mono 14
 - Settings: `Appearence -> Allow font ligature`
     > Para mostrar os icones do Yazi
 - Color Scheme: Brogrammer
@@ -102,6 +102,80 @@ else
 fi
 ```
 
+## WEZTERM
+
+Create a `.wezterm.lua` in home directory:
+```lua
+local wezterm = require("wezterm")
+
+local config = wezterm.config_builder()
+
+config.window_decorations = "RESIZE"
+
+local opacity = 0.95
+ 
+config.window_background_opacity = opacity
+config.macos_window_background_blur = 30
+
+config.keys = {
+    -- Page Management
+    { key = "o", mods = "ALT", action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" }},
+    { key = "v", mods = "ALT", action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" }},
+
+    -- Pane Navigation
+    { key = "LeftArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection "Left" },
+    { key = "RightArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection "Right" },
+    { key = "UpArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection "Up" },
+    { key = "DownArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection "Down" },
+}
+
+local act = wezterm.action
+
+config.keys = {
+  {
+    key = 'E',
+    mods = 'CTRL|SHIFT',
+    action = act.PromptInputLine {
+      description = 'Enter new name for tab',
+      initial_value = '',
+      action = wezterm.action_callback(function(window, pane, line)
+        -- line will be `nil` if they hit escape without entering anything
+        -- An empty string if they just hit enter
+        -- Or the actual line of text they wrote
+        if line then
+          window:active_tab():set_title(line)
+        end
+      end),
+    },
+  },
+}
+
+function tab_title(tab_info)
+  local title = tab_info.tab_title
+  -- if the tab title is explicitly set, take that
+  if title and #title > 0 then
+    return title
+  end
+  -- Otherwise, use the title from the active pane
+  -- in that tab
+  return tab_info.active_pane.title
+end
+
+wezterm.on(
+  'format-tab-title',
+  function(tab, tabs, panes, config, hover, max_width)
+    local title = tab_title(tab)
+    if tab.is_active then
+      return {
+        { Background = { Color = 'black' } },
+        { Text = ' ' .. title .. ' ' },
+      }
+    end
+  end
+)
+
+return config
+```
 
 ## NEOVIM
 
@@ -121,7 +195,7 @@ All the installed plugins are listed in the `init.lua`
 **Steps**
 - 1: Install the language server in in the machine (`brew install language-server-here` for example)
 - 2: Creat the `language-server.lua` file in the `/lsp` folder
-- 3: Use the `vim.lsp.enable("language-server-here")
+- 3: Use the `vim.lsp.enable("language-server-here")`
 
 ### COLOR SCHEME
 The color scheme used is customized by me for VSCode, so to use it in nvim we need to convert it into nvim syntax. Use https://github.com/viniciusmuller/djanho# project for that.
@@ -147,7 +221,7 @@ outer.right =      15
 
 ```sh
 brew install yazi ffmpegthumbnailer ffmpeg sevenzip jq poppler fd ripgrep fzf zoxide imagemagick font-symbols-only-nerd-font
-``
+```
 
 Paste in /zshrc:
 ```sh
@@ -167,7 +241,7 @@ Install the theme:
 ya pkg add gosxrgxx/flexoki-dark
 ```
 
-Paste the theme name in `.config/yazi/theme.toml`:
+Create a file named `theme.toml` in `.config/yazi/` and paste:
 [flavor]
 dark = "flexoki-dark"
 
@@ -194,4 +268,40 @@ dark = "flexoki-dark"
 - Neovim:
     - Markdown: https://linkarzu.com/posts/neovim/markdown-setup-2024/
     - Markdown Preview: https://github.com/iamcco/markdown-preview.nvim
+
+
+## Tmux
+
+- Install: `brew install tmux`
+
+- Create config file `tmux.conf` in `~/.config/tmux/tmux.conf`
+
+- Source config file:
+    - `tmux source-file <file-location>`
+    - `source-file <tmux-location>`: Sources the file within tmux session
+
+- Commands:
+    - tmux attach
+    - tmux detach
+    - tmux new -s <session>
+    - tmux new-session -d -s <new-session>
+    - tmux switch -t <session>
+    - tmux kill-session -t <session-index>
+    - Ctrl+b + s: List sessions
+    - Ctrl+b + $: change session name
+    - Ctrl+b + c: create a window
+        - Ctrl+b + <index>: Change window
+        - Ctrl+b + w: List all windows
+        - Ctrl+b + , (comma): Rename a window
+        - Ctrl+b + x: Kill window
+        - Ctrl+b + ": Split horizontally
+        - Ctrl+b + %: Split vertically
+            - Ctrl+b + z: focus on a single split. Repeat the command to exit it.
+        - Ctrl+b + [: Enter select mode in current terminal
+            - Enter: Copy the select texts
+            - Command+v/p: To paste in another place/vim, respectivelly
+            - Ctrl+b + ]: To paste it while in a tmux session
+            - Ctrl+b + =: Shows the list of things we copied
+    - Ctrl+b + ":": Shell command within tmux
+
 
