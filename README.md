@@ -102,6 +102,30 @@ else
 fi
 ```
 
+## WEZTERM
+
+Create a `.wezterm.lua` in home directory:
+```lua
+local wezterm = require("wezterm")
+
+local config = wezterm.config_builder()
+
+config.window_decorations = "RESIZE"
+
+config.keys = {
+    -- Page Management
+    { key = "o", mods = "ALT", action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" }},
+    { key = "v", mods = "ALT", action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" }},
+
+    -- Pane Navigation
+    { key = "LeftArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection "Left" },
+    { key = "RightArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection "Right" },
+    { key = "UpArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection "Up" },
+    { key = "DownArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection "Down" },
+}
+
+return config
+```
 
 ## NEOVIM
 
