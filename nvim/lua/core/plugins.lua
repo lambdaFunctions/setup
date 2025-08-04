@@ -8,7 +8,7 @@ Plug("DreamMaoMao/yazi.nvim")
 Plug("prabirshrestha/vim-lsp")
 Plug("mattn/vim-lsp-settings")
 Plug("nvim-pack/nvim-spectre")
-Plug("gmr458/cold.nvim")
+Plug("tribela/vim-transparent")
 -- Plug("mfussenegger/nvim-dap")
 -- Plug("igorlfs/nvim-dap-view")
 

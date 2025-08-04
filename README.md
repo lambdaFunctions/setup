@@ -112,6 +112,11 @@ local config = wezterm.config_builder()
 
 config.window_decorations = "RESIZE"
 
+local opacity = 0.95
+ 
+config.window_background_opacity = opacity
+config.macos_window_background_blur = 30
+
 config.keys = {
     -- Page Management
     { key = "o", mods = "ALT", action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" }},

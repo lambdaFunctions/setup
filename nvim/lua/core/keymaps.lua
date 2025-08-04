@@ -6,11 +6,11 @@ keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit window" })
 keymap.set("n", "<leader>nh", "<cmd>noh<CR>", { desc = "Clear highlight" })
 
 -- auto closing symbols
-keymap.set('i', '(<tab>', '()<Left>')
-keymap.set('i', '[<tab>', '[]<Left>')
-keymap.set('i', '{<tab>', '{}<Left>')
-keymap.set('i', '{<CR>', '{<CR>}<Esc>O')
-keymap.set('i', '{;<CR>', '{<CR>};<Esc>O')
+-- keymap.set('i', '(<tab>', '()<Left>')
+-- keymap.set('i', '[<tab>', '[]<Left>')
+-- keymap.set('i', '{<tab>', '{}<Left>')
+-- keymap.set('i', '{<CR>', '{<CR>}<Esc>O')
+-- keymap.set('i', '{;<CR>', '{<CR>};<Esc>O')
 
 -- splits
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split vertical" })
