@@ -19,6 +19,18 @@ keymap.set("n", "<Tab>", "<cmd>tabn<CR>", { desc = "Next tab" })
 keymap.set("n", "<S-Tab>", "<cmd>tabp<CR>", { desc = "Previous tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Buffer to tab" })
 
+-- INSERT MORE
+-- Auto-insert {} and place cursor inside
+vim.keymap.set("i", "{", function()
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+
+    -- Insert {} at cursor
+    vim.api.nvim_put({"{}"}, "c", true, true)
+
+    -- Move cursor one position left (inside the braces)
+    vim.api.nvim_win_set_cursor(0, {row, col + 1})
+end, { noremap = true })
+
 -- file manager
 keymap.set("n", "<leader>fy", "<cmd>Yazi<CR>", { desc = "Open Yazi" })
 
