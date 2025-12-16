@@ -19,29 +19,11 @@ keymap.set("n", "<Tab>", "<cmd>tabn<CR>", { desc = "Next tab" })
 keymap.set("n", "<S-Tab>", "<cmd>tabp<CR>", { desc = "Previous tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Buffer to tab" })
 
--- INSERT MORE
--- Auto-insert {} and place cursor inside
-vim.keymap.set("i", "{", function()
-    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-
-    -- Insert {} at cursor
-    vim.api.nvim_put({"{}"}, "c", true, true)
-
-    -- Move cursor one position left (inside the braces)
-    vim.api.nvim_win_set_cursor(0, {row, col + 1})
-end, { noremap = true })
-
 -- file manager
 keymap.set("n", "<leader>fy", "<cmd>Yazi<CR>", { desc = "Open Yazi" })
 
 -- Terminal
-require("toggleterm").setup{
-    -- size = 80;
-    -- direction = "vertical",
-    direction = "float",
-    autochdir = true,
-}
-
+require("toggleterm").setup{ direction = "float", autochdir = true }
 keymap.set('n', '<leader>j', '<CMD>lua require("ToggleTerm").toggle()<CR>')
 keymap.set('t', '<ESC>', '<C-\\><C-n><CMD>lua require("ToggleTerm").toggle()<CR>')
 
@@ -52,18 +34,8 @@ keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' 
 keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
--- Spectre (Find and Replace)
-keymap.set('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" })
-keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', { desc = "Search current word" })
-keymap.set('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = "Search current word" })
-keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', { desc = "Search on current file" })
-
 -- LSP KEYMAPS
--- keymap.set("n", "<leader>lsh", "<cmd>LspHover<CR>", { desc = "Show floating hover window" }) 
--- keymap.set("n", "<leader>lsi", "<cmd>LspPeekImplementation<CR>", { desc = "Show implementation in floating window" }) 
--- keymap.set("n", "<F12>", "<cmd>tab split | LspDefinition<CR>", { desc = "Go to definition in current window" }) 
 keymap.set("n", "<leader>gt", "<cmd>tab split | LspDefinition<CR>", { desc = "Go to definition in current window" }) 
--- keymap.set("n", "<leader>lsd", "<cmd>LspPeekDefinition<CR>", { desc = "Go to definition in a floating window" }) 
 keymap.set("n", "<leader>lsw", "<cmd>LspReferences<CR>", { desc = "Show symbol references in a new window" }) 
 keymap.set("n", "<leader>lw", "<cmd>LspRename<CR>", { desc = "Rename in entire opened file" }) 
 
