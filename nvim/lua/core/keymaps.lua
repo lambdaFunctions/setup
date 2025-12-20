@@ -29,17 +29,15 @@ keymap.set('t', '<ESC>', '<C-\\><C-n><CMD>lua require("ToggleTerm").toggle()<CR>
 
 -- Telescope bindings
 local builtin = require('telescope.builtin')
-keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+keymap.set('n', '<Leader>ff', ':lua require("telescope.builtin").find_files({ hidden = true })<CR>', { noremap = true, silent = true })
+keymap.set('n', '<Leader>fg', ':lua require("telescope.builtin").live_grep({ additional_args = { "--hidden" } } )<CR>', { noremap = true, silent = true })
 
 -- LSP KEYMAPS
 keymap.set("n", "<leader>gt", "<cmd>tab split | LspDefinition<CR>", { desc = "Go to definition in current window" }) 
 keymap.set("n", "<leader>lsw", "<cmd>LspReferences<CR>", { desc = "Show symbol references in a new window" }) 
 keymap.set("n", "<leader>lw", "<cmd>LspRename<CR>", { desc = "Rename in entire opened file" }) 
 
--- -- Rust
+-- LSP: Rust
 vim.lsp.config.rust_analyzer = {
     on_attach = on_attach,
     capabilities = capabilities,
@@ -64,7 +62,7 @@ vim.lsp.config.rust_analyzer = {
 
 vim.lsp.enable("rust_analyzer")
 
--- -- Diagnostics
+-- LSP: Diagnostics
 local options = require("core.options")
 
 print("toggle:", vim.inspect(options.toggle_diagnostics))  -- keep this until it prints function
