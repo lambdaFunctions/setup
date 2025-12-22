@@ -22,6 +22,10 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Buffer to tab" })
 -- file manager
 keymap.set("n", "<leader>fy", "<cmd>Yazi<CR>", { desc = "Open Yazi" })
 
+-- Vim Tree
+require("nvim-tree.api")
+keymap.set('n', '<leader>ts', '<cmd>NvimTreeToggle<CR>')
+
 -- Terminal
 require("toggleterm").setup{ direction = "float", autochdir = true }
 keymap.set('n', '<leader>j', '<CMD>lua require("ToggleTerm").toggle()<CR>')

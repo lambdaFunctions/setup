@@ -4,17 +4,60 @@ require("core.plugins")
 require("core.keymaps")
 
 -- Colorscheme
-vim.cmd("colorscheme cursor-dark-midnight")
+-- vim.cmd("colorscheme cursor-dark-midnight")
+-- vim.cmd("colorscheme rasmus")
+vim.cmd("colorscheme nordic")
 
 -- Colorscheme: Tabs
 vim.api.nvim_set_hl(0, "TabLineSel", {
     fg = "#000000",
     bg = "#f8f8f8",
-    bold = true,
+    bold = false,
 })
-  
+
 vim.api.nvim_set_hl(0, "TabLineFill", {
     bg = "#111111",
+})
+
+-- Colorscheme: Config
+require('nordic').setup({
+    italic_comments = false,
+    -- Enable editor background transparency.
+    transparent = {
+        -- Enable transparent background.
+        bg = true,
+        -- Enable transparent background for floating windows.
+        float = true,
+    },
+    -- Enable brighter float border.
+    bright_border = false,
+    -- Reduce the overall amount of blue in the theme (diverges from base Nord).
+    reduced_blue = false,
+    -- Swap the dark background with the normal one.
+    swap_backgrounds = false,
+    -- Cursorline options.  Also includes visual/selection.
+    cursorline = {
+        -- Bold font in cursorline.
+        bold = false,
+        -- Bold cursorline number.
+        bold_number = true,
+    },
+    noice = {
+        -- Available styles: `classic`, `flat`.
+        style = 'flat',
+    },
+    telescope = {
+        -- Available styles: `classic`, `flat`.
+        style = 'flat',
+    },
+    leap = {
+        -- Dims the backdrop when using leap.
+        dim_backdrop = false,
+    },
+    ts_context = {
+        -- Enables dark background for treesitter-context window
+        dark_background = true,
+    }
 })
 
 -- Status Bar
