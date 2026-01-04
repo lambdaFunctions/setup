@@ -271,7 +271,7 @@ dark = "flexoki-dark"
 
 
 ## Tmux
-
+~
 - Install: `brew install tmux`
 
 - Create config file `tmux.conf` in `~/.config/tmux/tmux.conf`
@@ -304,4 +304,18 @@ dark = "flexoki-dark"
             - Ctrl+b + =: Shows the list of things we copied
     - Ctrl+b + ":": Shell command within tmux
 
+- Plugin manager:
+> ref: `https://github.com/tmux-plugins/tpm`
+
+- Custom steps:
+    - Go to `~/.config/tmux`
+    - `mkdir plugins`
+    - `cd plugins`
+    - Run `git clone https://github.com/tmux-plugins/tpm tpm`
+    - `tmux source-file <file-location>`
+    - vim `tmux.conf`
+    - Ctrl+b + I: install the plugin
+
+- Commands:
+    - Ctrl+b + tab: Toggle sidebar
 
