@@ -4,20 +4,7 @@ require("core.plugins")
 require("core.keymaps")
 
 -- Colorscheme
--- vim.cmd("colorscheme cursor-dark-midnight")
--- vim.cmd("colorscheme rasmus")
 vim.cmd("colorscheme nordic")
-
--- Colorscheme: Tabs
-vim.api.nvim_set_hl(0, "TabLineSel", {
-    fg = "#000000",
-    bg = "#f8f8f8",
-    bold = false,
-})
-
-vim.api.nvim_set_hl(0, "TabLineFill", {
-    bg = "#111111",
-})
 
 -- Colorscheme: Config
 require('nordic').setup({
@@ -60,6 +47,19 @@ require('nordic').setup({
     }
 })
 
+vim.cmd("colorscheme nordic")
+
+-- Colorscheme: Tabs
+vim.api.nvim_set_hl(0, "TabLineSel", {
+    fg = "#000000",
+    bg = "#f8f8f8",
+    bold = false,
+})
+
+vim.api.nvim_set_hl(0, "TabLineFill", {
+    bg = "#111111",
+})
+
 -- Status Bar
 require("lualine").setup({
     options = {
@@ -73,6 +73,16 @@ require("lualine").setup({
         lualine_x = { 'filezie', 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
     }
+})
+
+-- Markdown Files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+    vim.opt_local.textwidth = 80
+  end,
 })
 
 -- LSP Config
