@@ -55,5 +55,7 @@ function PythonSetup.setup()
     })
 end
 
+vim.lsp.enable("pyright")
+
 return PythonSetup
 

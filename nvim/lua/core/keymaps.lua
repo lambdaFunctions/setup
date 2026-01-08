@@ -28,46 +28,17 @@ keymap.set('n', '<leader>j', '<CMD>lua require("ToggleTerm").toggle()<CR>')
 keymap.set('t', '<ESC>', '<C-\\><C-n><CMD>lua require("ToggleTerm").toggle()<CR>')
 
 -- Telescope bindings
-local builtin = require('telescope.builtin')
 keymap.set('n', '<Leader>ff', ':lua require("telescope.builtin").find_files({ hidden = true })<CR>', { noremap = true, silent = true })
 keymap.set('n', '<Leader>fg', ':lua require("telescope.builtin").live_grep({ additional_args = { "--hidden" } } )<CR>', { noremap = true, silent = true })
 
--- LSP KEYMAPS
-keymap.set("n", "<leader>gt", "<cmd>tab split | LspDefinition<CR>", { desc = "Go to definition in current window" }) 
-keymap.set("n", "<leader>lsw", "<cmd>LspReferences<CR>", { desc = "Show symbol references in a new window" }) 
-keymap.set("n", "<leader>lw", "<cmd>LspRename<CR>", { desc = "Rename in entire opened file" }) 
-
--- LSP: Rust
-vim.lsp.config.rust_analyzer = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    cmd = { 'rust-analyzer' },
-    filetypes = { 'rust' },
-    root_markers = {"Cargo.toml", ".git"},
-    single_file_support = true,
-    settings = {
-        ['rust-analyzer'] = {
-            diagnostics = {
-                enable = false;
-            }
-        }
-    },
-    before_init = function(init_params, config)
-        -- See https://github.com/rust-lang/rust-analyzer/blob/eb5da56d839ae0a9e9f50774fa3eb78eb0964550/docs/dev/lsp-extensions.md?plain=1#L26
-        if config.settings and config.settings['rust-analyzer'] then
-            init_params.initializationOptions = config.settings['rust-analyzer']
-        end
-    end,
-}
-
-vim.lsp.enable("rust_analyzer")
-
--- LSP: Diagnostics
-local options = require("core.options")
-
-print("toggle:", vim.inspect(options.toggle_diagnostics))  -- keep this until it prints function
-
-vim.keymap.set("n", "<leader>td", options.toggle_diagnostics, {
-    desc = "Toggle LSP diagnostics",
-})
+-- LSP
+keymap.set('n', '<leader>td', function()
+  if vim.diagnostic.is_enabled() then
+    vim.diagnostic.disable()
+    vim.notify("LSP messages: OFF", vim.log.levels.WARN)
+  else
+    vim.diagnostic.enable()
+    vim.notify("LSP messages: ON", vim.log.levels.INFO)
+  end
+end, { desc = 'Toggle ALL LSP messages' })
 
