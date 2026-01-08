@@ -7,6 +7,7 @@ opt.number = true
 opt.wildoptions = "pum"
 opt.path:append("**")
 opt.cursorline = false 
+opt.cursorline = true
 opt.wrap = false
 opt.swapfile = false
 opt.signcolumn = "yes"      -- Avoid the LSP Warnings/Errors from shifting the number column
@@ -56,6 +57,7 @@ function _G.get_tabline()
 end
 
 vim.o.tabline = "%!v:lua.get_tabline()"
+
 
 -- Toggle LSP diagnostics (comprehensive)
 -- local M = {}
