@@ -31,6 +31,9 @@ keymap.set('t', '<ESC>', '<C-\\><C-n><CMD>lua require("ToggleTerm").toggle()<CR>
 keymap.set('n', '<Leader>ff', ':lua require("telescope.builtin").find_files({ hidden = true })<CR>', { noremap = true, silent = true })
 keymap.set('n', '<Leader>fg', ':lua require("telescope.builtin").live_grep({ additional_args = { "--hidden" } } )<CR>', { noremap = true, silent = true })
 
+-- One line: open new tab and run gri
+vim.keymap.set('n', 'gt', '<cmd>tab split | lua vim.lsp.buf.implementation()<CR>', { desc = 'Open references in new tab' })
+
 -- LSP
 keymap.set('n', '<leader>td', function()
   if vim.diagnostic.is_enabled() then

@@ -12,7 +12,6 @@ require("lsp.pyright")
 require("lsp.rust_analyzer")
 require("lsp.general_config")                   -- Always the last to be imported.
 
-
 -- Custom Config (Plugins, native vim, etc.)
 require("custom.tabs")
 require("custom.markdown")
