@@ -32,7 +32,9 @@ keymap.set('n', '<Leader>ff', ':lua require("telescope.builtin").find_files({ hi
 keymap.set('n', '<Leader>fg', ':lua require("telescope.builtin").live_grep({ additional_args = { "--hidden" } } )<CR>', { noremap = true, silent = true })
 
 -- One line: open new tab and run gri
-vim.keymap.set('n', 'gt', '<cmd>tab split | lua vim.lsp.buf.implementation()<CR>', { desc = 'Open references in new tab' })
+vim.keymap.set('n', 'gti', '<cmd>tab split | lua vim.lsp.buf.implementation()<CR>', { desc = '' })
+vim.keymap.set("n", "gtd", "<cmd>tab split | lua vim.lsp.buf.type_definition()<CR>", { desc = '' })
+-- keymap.set("n", "<leader>gt", "<cmd>tab split | LspDefinition<CR>", { desc = "Go to definition in current window" })
 
 -- LSP
 keymap.set('n', '<leader>td', function()
