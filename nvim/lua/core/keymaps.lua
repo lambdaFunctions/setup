@@ -23,7 +23,6 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Buffer to tab" })
 keymap.set("n", "<leader>fy", "<cmd>Yazi<CR>", { desc = "Open Yazi" })
 
 -- Terminal
-require("toggleterm").setup{ direction = "float", autochdir = true }
 keymap.set('n', '<leader>j', '<CMD>lua require("ToggleTerm").toggle()<CR>')
 keymap.set('t', '<ESC>', '<C-\\><C-n><CMD>lua require("ToggleTerm").toggle()<CR>')
 
@@ -34,7 +33,6 @@ keymap.set('n', '<Leader>fg', ':lua require("telescope.builtin").live_grep({ add
 -- One line: open new tab and run gri
 vim.keymap.set('n', 'gti', '<cmd>tab split | lua vim.lsp.buf.implementation()<CR>', { desc = '' })
 vim.keymap.set("n", "gtd", "<cmd>tab split | lua vim.lsp.buf.type_definition()<CR>", { desc = '' })
--- keymap.set("n", "<leader>gt", "<cmd>tab split | LspDefinition<CR>", { desc = "Go to definition in current window" })
 
 -- LSP
 keymap.set('n', '<leader>td', function()
@@ -46,4 +44,7 @@ keymap.set('n', '<leader>td', function()
     vim.notify("LSP messages: ON", vim.log.levels.INFO)
   end
 end, { desc = 'Toggle ALL LSP messages' })
+
+-- DAP
+
 
