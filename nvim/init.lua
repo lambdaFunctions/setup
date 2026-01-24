@@ -13,6 +13,9 @@ require("lsp.rust_analyzer")
 require("lsp.ts_ls")
 require("lsp.general_config")                   -- Always the last to be imported.
 
+-- DAP
+require("core.dap")
+
 -- Custom Config (Plugins, native vim, etc.)
 require("custom.tabs")
 require("custom.markdown")

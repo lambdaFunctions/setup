@@ -46,5 +46,14 @@ keymap.set('n', '<leader>td', function()
 end, { desc = 'Toggle ALL LSP messages' })
 
 -- DAP
+local dap = require("dap")
+keymap.set("n", "<F5>", dap.continue)
+keymap.set("n", "<F10>", dap.step_over)
+keymap.set("n", "<F11>", dap.step_into)
+keymap.set("n", "<F12>", dap.step_out)
+keymap.set("n", "<leader>b", dap.toggle_breakpoint)
 
+-- DAP UI
+local dapui = require("dapui")
+keymap.set("n", "<leader>du", dapui.toggle)
 
