@@ -29,9 +29,8 @@ local function smart_background_change(color_hex, transparent)
     
     vim.api.nvim_set_hl(0, group, new_settings)
   end
-  
-  print("Background changed without affecting text colors")
 end
 
--- Usage
-smart_background_change("#0d0d0d", false)  -- Solid color
+-- smart_background_change("#0d0d0d", false)  -- Solid color
+smart_background_change("#090909", false)  -- Solid color
+

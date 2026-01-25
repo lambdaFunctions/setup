@@ -1,22 +1,24 @@
--- Core Settings
 require("core.options")
 require("core.plugins")
 require("core.keymaps")
 
--- Colorscheme
+require("plugins.statusbar")
+require("plugins.toggleterm")
+require("plugins.mason")
+
 vim.cmd("colorscheme rasmus")
 
--- LSP
 require("lsp.lua_ls")
 require("lsp.pyright")
 require("lsp.rust_analyzer")
 require("lsp.ts_ls")
 require("lsp.general_config")                   -- Always the last to be imported.
 
--- DAP
-require("core.dap")
+require("core.dap_config")
+require("dap_langs.python")
+require("dap_langs.node")
+require("dap_langs.rust")
 
--- Custom Config (Plugins, native vim, etc.)
 require("custom.tabs")
 require("custom.markdown")
 require("custom.background")

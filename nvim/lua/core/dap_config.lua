@@ -8,22 +8,22 @@ require("dap-vscode-js").setup({
 
 dapui.setup({
   layouts = {
-    {
-      elements = {
-        { id = "scopes", size = 0.35 },
-        { id = "breakpoints", size = 0.15 },
-        { id = "stacks", size = 0.25 },
-        { id = "watches", size = 0.25 },
-      },
-      size = 40,
-      position = "left",
-    },
+    -- {
+    --   elements = {
+    --     { id = "scopes", size = 0.35 },
+    --     { id = "breakpoints", size = 0.15 },
+    --     { id = "stacks", size = 0.25 },
+    --     { id = "watches", size = 0.25 },
+    --   },
+    --   size = 40,
+    --   position = "left",
+    -- },
     {
       elements = {
         "repl",
         "console",
       },
-      size = 10,
+      size = 20,
       position = "bottom",
     },
   },
@@ -33,13 +33,12 @@ dapui.setup({
 dap.listeners.after.event_initialized["dapui"] = function()
   dapui.open()
 end
+
 dap.listeners.before.event_terminated["dapui"] = function()
   dapui.close()
 end
+
 dap.listeners.before.event_exited["dapui"] = function()
   dapui.close()
 end
-
-require("dap.python")
-require("dap.typescript")
 
