@@ -2,6 +2,7 @@ vim.cmd([[
   call plug#begin(stdpath('data') . '/plugged')
 
     Plug 'kvrohit/rasmus.nvim'
+    Plug 'aktersnurra/no-clown-fiesta.nvim'
     Plug 'akinsho/toggleterm.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'DreamMaoMao/yazi.nvim'

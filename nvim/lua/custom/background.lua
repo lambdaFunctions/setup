@@ -31,6 +31,6 @@ local function smart_background_change(color_hex, transparent)
   end
 end
 
--- smart_background_change("#0d0d0d", false)  -- Solid color
-smart_background_change("#090909", false)  -- Solid color
+smart_background_change("#0d0d0d", false)  -- Solid color
+-- smart_background_change("#090909", false)  -- Solid color
 

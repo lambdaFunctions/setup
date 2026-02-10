@@ -6,12 +6,15 @@ require("plugins.statusbar")
 require("plugins.toggleterm")
 require("plugins.mason")
 
-vim.cmd("colorscheme rasmus")
+vim.cmd("colorscheme no-clown-fiesta")
+-- vim.cmd("colorscheme rasmus")
 
 require("lsp.lua_ls")
 require("lsp.pyright")
 require("lsp.rust_analyzer")
 require("lsp.ts_ls")
+require("lsp.clangd")
+require("lsp.gopls")
 require("lsp.general_config")                   -- Always the last to be imported.
 
 require("core.dap_config")
