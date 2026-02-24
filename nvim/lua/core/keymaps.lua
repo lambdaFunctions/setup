@@ -44,8 +44,10 @@ keymap.set('n', '<leader>j', '<CMD>lua require("ToggleTerm").toggle()<CR>')
 keymap.set('t', '<ESC>', '<C-\\><C-n><CMD>lua require("ToggleTerm").toggle()<CR>')
 
 -- Telescope bindings
-keymap.set('n', '<Leader>ff', ':lua require("telescope.builtin").find_files({ hidden = true })<CR>', { noremap = true, silent = true })
-keymap.set('n', '<Leader>fg', ':lua require("telescope.builtin").live_grep({ additional_args = { "--hidden" } } )<CR>', { noremap = true, silent = true })
+local telescope = require("plugins.telescope")
+vim.keymap.set("n", "<leader>ff", telescope.project_find_files, { desc = "Find files (project-aware)" })
+vim.keymap.set("n", "<leader>fg", telescope.project_live_grep, { desc = "Live grep (project-aware)" })
+vim.keymap.set("n", "<leader>fa", telescope.find_all_files, { desc = "Find ALL files (hidden + ignored)" })
 
 -- LSP
 keymap.set('n', '<leader>td', function()
