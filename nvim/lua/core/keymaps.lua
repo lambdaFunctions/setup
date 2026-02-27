@@ -19,23 +19,6 @@ keymap.set("n", "<Tab>", "<cmd>tabn<CR>", { desc = "Next tab" })
 keymap.set("n", "<S-Tab>", "<cmd>tabp<CR>", { desc = "Previous tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Buffer to tab" })
 
--- Insert Mode Commands
-vim.keymap.set("i", "{", function()
-  -- Insert opening brace
-  vim.api.nvim_put({ "{" }, "c", true, true)
-
-  -- New line and indent
-  vim.cmd("normal! o")
-  vim.cmd("normal! ==")
-
-  -- Insert closing brace on a new line
-  vim.cmd("normal! o}")
-  vim.cmd("normal! ==")
-
-  -- Move cursor back inside the block
-  vim.cmd("normal! k")
-end, { noremap = true, silent = true })
-
 -- file manager
 keymap.set("n", "<leader>fy", "<cmd>Yazi<CR>", { desc = "Open Yazi" })
 

@@ -4,6 +4,7 @@ require("core.keymaps")
 
 require("plugins.statusbar")
 require("plugins.toggleterm")
+require("plugins.telescope")
 require("plugins.mason")
 
 vim.cmd("colorscheme no-clown-fiesta")

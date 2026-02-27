@@ -52,6 +52,13 @@ function M.project_find_files()
   local project = detect_project_type(root)
 
   local opts = {
+    sorting_strategy = "ascending",
+    layout_config = {
+      horizontal = {
+        prompt_position = "top",
+        preview_width = 0.70,
+      },
+    },
     cwd = root,
   }
 
@@ -86,6 +93,13 @@ function M.project_live_grep()
   local project = detect_project_type(root)
 
   local opts = {
+    sorting_strategy = "ascending",
+    layout_config = {
+      horizontal = {
+        prompt_position = "top",
+        preview_width = 0.70,
+      },
+    },
     cwd = root,
     additional_args = function()
       return { "--hidden" }
@@ -106,6 +120,13 @@ end
 -- Shared finder (.env files, etc.) for all languages
 function M.find_all_files()
   builtin.find_files({
+    sorting_strategy = "ascending",
+    layout_config = {
+      horizontal = {
+        prompt_position = "top",
+        preview_width = 0.70,
+      },
+    },
     cwd = get_root(),
     hidden = true,
     no_ignore = true,
