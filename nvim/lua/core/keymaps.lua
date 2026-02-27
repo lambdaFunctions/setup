@@ -49,11 +49,14 @@ vim.keymap.set("n", "gtd", "<cmd>tab split | lua vim.lsp.buf.type_definition()<C
 
 -- DAP
 local dap = require("dap")
+local opts = { noremap = true, silent = true }
 keymap.set("n", "<F5>", dap.continue)
 keymap.set("n", "<F10>", dap.step_over)
 keymap.set("n", "<F11>", dap.step_into)
 keymap.set("n", "<F12>", dap.step_out)
 keymap.set("n", "<leader>b", dap.toggle_breakpoint)
+keymap.set("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>", opts)
+keymap.set("n", "<leader>dl", ":lua require'dap'.run_last()<CR>", opts)
 
 -- DAP UI
 local dapui = require("dapui")

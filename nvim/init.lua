@@ -26,4 +26,5 @@ require("dap_langs.rust")
 require("custom.tabs")
 require("custom.markdown")
 require("custom.background")
+require("custom.linenumber")
 

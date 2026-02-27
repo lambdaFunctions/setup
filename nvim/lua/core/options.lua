@@ -3,8 +3,9 @@ vim.cmd("let g:netrw_liststyle = 3")
 local opt = vim.opt
 
 opt.number = true
-opt.relativenumber = true
-opt.cursorline = false
+opt.relativenumber = false
+opt.cursorline = true
+opt.cursorlineopt = "number"
 opt.wildoptions = "pum"
 opt.path:append("**")
 opt.wrap = false

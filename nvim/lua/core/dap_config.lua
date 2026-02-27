@@ -42,3 +42,11 @@ dap.listeners.before.event_exited["dapui"] = function()
   dapui.close()
 end
 
+dap.listeners.after.event_output["dapui"] = function(session, body)
+  if body.category == "console" then
+    vim.schedule(function()
+      require("dapui").eval(body.output)
+    end)
+  end
+end
+
