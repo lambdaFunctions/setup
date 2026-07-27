@@ -8,5 +8,5 @@ return {
     config = function()
       vim.cmd("colorscheme no-clown-fiesta")
     end,
-  },
+  }
 }

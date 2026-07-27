@@ -1,35 +1,47 @@
 local dap = require('dap')
 
-dap.adapters.lldb = {
-  type = 'executable',
-  command = '/usr/bin/lldb-vscode', -- adjust as needed, must be absolute path
-  name = 'lldb'
+dap.adapters.codelldb = {
+  type = 'server',
+  port = '${port}',
+  executable = {
+    command = vim.fn.stdpath('data') .. '/mason/bin/codelldb',
+    args = { '--port', '${port}' },
+  },
 }
 
-dap.configurations.cpp = {
+local function default_executable()
+  local cwd = vim.fn.getcwd()
+  local pkg_name = nil
+  local cargo_toml = io.open(cwd .. '/Cargo.toml', 'r')
+  if cargo_toml then
+    for line in cargo_toml:lines() do
+      pkg_name = line:match('^name%s*=%s*"(.+)"')
+      if pkg_name then break end
+    end
+    cargo_toml:close()
+  end
+  local default_path = cwd .. '/target/debug/' .. (pkg_name or '')
+  return vim.fn.input('Path to executable: ', default_path, 'file')
+end
+
+dap.configurations.rust = {
   {
-    name = 'Launch',
-    type = 'lldb',
+    name = 'Launch (cargo build)',
+    type = 'codelldb',
     request = 'launch',
     program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      local build_output = vim.fn.system('cargo build')
+      if vim.v.shell_error ~= 0 then
+        error('cargo build failed:\n' .. build_output)
+      end
+      return default_executable()
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
     args = {},
-
-    -- 💀
-    -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-    --
-    --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-    --
-    -- Otherwise you might get the following error:
-    --
-    --    Error on launch: Failed to attach to the target process
-    --
-    -- But you should be aware of the implications:
-    -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-    -- runInTerminal = false,
+    sourceLanguages = { 'rust' },
   },
 }
 
+dap.configurations.cpp = dap.configurations.rust
+dap.configurations.c = dap.configurations.rust

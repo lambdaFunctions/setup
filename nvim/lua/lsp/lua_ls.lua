@@ -1,5 +1,7 @@
 -- Tell lua-language-server about the Neovim runtime so `vim.*` stops showing as undefined
 vim.lsp.config.lua_ls = {
+  cmd = { "lua-language-server" },
+  filetypes = { "lua" },
   settings = {
     Lua = {
       runtime = { version = "LuaJIT" },
@@ -12,5 +14,3 @@ vim.lsp.config.lua_ls = {
 }
 
 vim.lsp.enable("lua_ls")
-vim.lsp.enable("rust_analyzer")
-vim.lsp.enable("ts_ls")

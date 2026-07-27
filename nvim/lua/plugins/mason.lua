@@ -25,6 +25,7 @@ return {
           "intelephense",
           "php-cs-fixer",
           "php-debug-adapter",
+          "codelldb",
         },
         auto_update  = false,
         run_on_start = true,

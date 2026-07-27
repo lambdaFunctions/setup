@@ -1,22 +1,24 @@
 local dap = require("dap")
 local dapui = require("dapui")
 
+vim.fn.sign_define("DapBreakpoint", { text = "*", texthl = "SignColumn", linehl = "", numhl = "" })
+
 dapui.setup({
   layouts = {
-    -- {
-    --   elements = {
-    --     { id = "scopes", size = 0.35 },
-    --     { id = "breakpoints", size = 0.15 },
-    --     { id = "stacks", size = 0.25 },
-    --     { id = "watches", size = 0.25 },
-    --   },
-    --   size = 40,
-    --   position = "left",
-    -- },
+    {
+      elements = {
+        { id = "scopes", size = 0.3 },
+        { id = "breakpoints", size = 0.15 },
+        { id = "stacks", size = 0.2 },
+        { id = "watches", size = 0.2 },
+        { id = "console", size = 0.15 },
+      },
+      size = 0.5,
+      position = "right",
+    },
     {
       elements = {
         "repl",
-        "console",
       },
       size = 20,
       position = "bottom",

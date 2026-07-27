@@ -21,6 +21,8 @@ require("lsp.pyright")
 require("lsp.clangd")
 require("lsp.gopls")
 require("lsp.intelephense")
+require("lsp.rust_analyzer")
+require("lsp.ts_ls")
 require("lsp.general_config")
 
 require("custom.tabs")
