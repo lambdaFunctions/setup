@@ -1,7 +1,9 @@
 vim.lsp.config.rust_analyzer = {
   cmd = { "rust-analyzer" },
   filetypes = { "rust" },
-  root_dir = vim.fs.root(0, { "Cargo.toml", ".git" }),
+  root_dir = function(bufnr, on_dir)
+    on_dir(vim.fs.root(bufnr, { "Cargo.toml", ".git" }))
+  end,
   settings = {
     ["rust-analyzer"] = {
       cargo = { allFeatures = true },

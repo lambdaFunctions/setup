@@ -1,7 +1,9 @@
 vim.lsp.config.pyright = {
   cmd = { "pyright-langserver", "--stdio" },
   filetypes = { "python" },
-  root_dir = vim.fs.root(0, { "pyrightconfig.json", "pyproject.toml", ".git" }),
+  root_dir = function(bufnr, on_dir)
+    on_dir(vim.fs.root(bufnr, { "pyrightconfig.json", "pyproject.toml", ".git" }))
+  end,
   settings = {
     python = {
       analysis = {

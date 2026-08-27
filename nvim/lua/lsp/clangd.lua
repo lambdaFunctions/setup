@@ -10,11 +10,13 @@ vim.lsp.config.clangd = {
 
   filetypes = { "c", "cpp", "objc", "objcpp" },
 
-  root_dir = vim.fs.root(0, {
-    "compile_commands.json",
-    "compile_flags.txt",
-    ".git",
-  }),
+  root_dir = function(bufnr, on_dir)
+    on_dir(vim.fs.root(bufnr, {
+      "compile_commands.json",
+      "compile_flags.txt",
+      ".git",
+    }))
+  end,
 }
 
 vim.lsp.enable("clangd")

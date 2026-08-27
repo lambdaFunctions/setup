@@ -1,4 +1,4 @@
-vim.g.nerdtree_auto_open = true
+vim.g.nerdtree_auto_open = false
 
 local augroup = vim.api.nvim_create_augroup("NERDTreeAuto", { clear = true })
 

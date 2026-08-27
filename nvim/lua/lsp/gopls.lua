@@ -3,11 +3,13 @@ vim.lsp.config.gopls = {
 
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
 
-  root_dir = vim.fs.root(0, {
-    "go.work",
-    "go.mod",
-    ".git",
-  }),
+  root_dir = function(bufnr, on_dir)
+    on_dir(vim.fs.root(bufnr, {
+      "go.work",
+      "go.mod",
+      ".git",
+    }))
+  end,
 
   settings = {
     gopls = {

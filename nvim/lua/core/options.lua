@@ -53,3 +53,10 @@ opt.splitbelow = true
 -- vim.cmd("highlight Normal guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE")
 opt.termguicolors = true
 
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#070707", bg = "#0d0d0d" })
+    vim.api.nvim_set_hl(0, "VertSplit",    { fg = "#070707", bg = "#0d0d0d" })
+  end,
+})
+

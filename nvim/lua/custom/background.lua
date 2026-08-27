@@ -32,8 +32,4 @@ local function smart_background_change(color_hex, transparent)
 end
 
 smart_background_change("#0d0d0d", false)  -- Solid color
--- smart_background_change("#090909", false)  -- Solid color
-
--- Dim the vertical/horizontal split line to be almost invisible
-vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#1a1a1a", bg = "#0d0d0d" })
 
