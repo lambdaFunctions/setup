@@ -9,6 +9,7 @@ cursor-text = #0d0d0d
 # ── window ───────────────────────────────────────────
 macos-titlebar-style = native
 macos-titlebar-proxy-icon = hidden
+title = " "
 window-theme = dark
 window-padding-x = 10
 window-padding-y = 0,10
