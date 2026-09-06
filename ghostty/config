@@ -63,7 +63,7 @@ keybind = cmd+shift+e=prompt_surface_title
 shell-integration = zsh
 shell-integration-features = cursor,sudo,no-title
 
-keybind = global:cmd+grave_accent=toggle_quick_terminal
+keybind = global:cmd+j=toggle_quick_terminal
 
 quick-terminal-position = bottom
 quick-terminal-size = 80%
