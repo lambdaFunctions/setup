@@ -1,0 +1,71 @@
+# ── colors ───────────────────────────────────────────
+
+# background = #070707
+background = #0d0d0d
+foreground = #e0e0e0
+cursor-color = #f8f8f2
+cursor-text = #0d0d0d
+
+# ── window ───────────────────────────────────────────
+macos-titlebar-style = native
+macos-titlebar-proxy-icon = hidden
+window-theme = dark
+window-padding-x = 10
+window-padding-y = 0,10
+window-padding-balance = true
+
+# ── cursor ───────────────────────────────────────────
+cursor-style-blink = false
+
+# ── env ──────────────────────────────────────────────
+term = xterm-256color
+
+# ── font ─────────────────────────────────────────────
+font-thicken = true
+
+font-size = 13
+font-family = JetBrainsMonoNL Nerd Font Mono
+font-style = Thin
+font-style-bold = Thin
+font-style-italic = Thin
+font-style-bold-italic = Thin
+
+adjust-cell-height = 2
+
+# family = Red Hat Mono / style = Light
+# family = Geist Mono
+# family = Martian Mono / style = Light
+# family = Andale Mono
+# family = MesloLGMDZ Nerd Font Propo
+# family = DejaVuSansM Nerd Font
+# family = Commit Mono Nerd Font
+# family = Departure Mono Nerd Font
+# family = Monaspace Xenon / style = Light
+
+# ── scrolling ────────────────────────────────────────
+scrollback-limit = 2000
+
+# ── tabs: shortcuts ──────────────────────────────────
+keybind = cmd+1=goto_tab:1
+keybind = cmd+2=goto_tab:2
+keybind = cmd+3=goto_tab:3
+keybind = cmd+4=goto_tab:4
+keybind = cmd+5=goto_tab:5
+keybind = cmd+6=goto_tab:6
+keybind = cmd+7=goto_tab:7
+keybind = cmd+8=goto_tab:8
+keybind = cmd+9=goto_tab:9
+
+# ── tabs: rename ─────────────────────────────────────
+keybind = cmd+shift+e=prompt_surface_title
+
+# ── quick terminal ───────────────────────────────────
+shell-integration = zsh
+shell-integration-features = cursor,sudo,no-title
+
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+
+quick-terminal-position = bottom
+quick-terminal-size = 80%
+quick-terminal-animation-duration = 0.1
+
