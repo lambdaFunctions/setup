@@ -1,24 +1,36 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -uo pipefail
 
-FLOAT_TERM="${1:-}"
-LIST_PANES="$(tmux list-panes -F '#F' )"
-PANE_ZOOMED="$(echo "${LIST_PANES}" | grep Z)"
-PANE_COUNT="$(echo ${LIST_PANES} | wc -l | bc)"
+STORE="_term"      # sessão detached onde os terminais ficam escondidos
+SPLIT_SIZE="40"    # % da largura do split
 
-if [ -n "${FLOAT_TERM}" ]; then
-  if [ "$(tmux display-message -p -F "#{session_name}")" = "float_terminal" ]; then
-    tmux detach-client
-  else
-    tmux popup -d '#{pane_current_path}' -xC -yC -w90% -h80% -E "tmux attach -t float_terminal || tmux new -s float_terminal"
-  fi
+win=$(tmux display-message -p '#{window_id}')          # @3 — estável
+cwd=$(tmux display-message -p '#{pane_current_path}')
+name="term${win#@}"                                     # term3
+
+# ── O terminal desta janela está visível? ────────────
+visible=$(tmux list-panes -t "$win" -F '#{pane_id} #{@is_term}' \
+          | awk '$2=="1"{print $1; exit}')
+
+if [ -n "$visible" ]; then
+  # Esconde: manda para a sessão de storage
+  tmux has-session -t "$STORE" 2>/dev/null \
+    || tmux new-session -d -s "$STORE" -n _keep
+  tmux break-pane -d -s "$visible" -n "$name" -t "$STORE:"
+  exit 0
+fi
+
+# ── Recupera o terminal específico desta janela ──────
+if tmux has-session -t "$STORE" 2>/dev/null \
+   && tmux list-windows -t "$STORE" -F '#W' | grep -qx "$name"; then
+  src=$(tmux list-panes -t "$STORE:$name" -F '#{pane_id}' | head -n1)
+  tmux join-pane -h -l "${SPLIT_SIZE}%" -s "$src" -t "$win"
+  tmux select-pane -t "$src"
 else
-  if [ "${PANE_COUNT}" = 1 ]; then
-    tmux split-window -c "#{pane_current_path}"
-  elif [ -n "${PANE_ZOOMED}" ]; then
-    tmux select-pane -t:.-
-  else
-    tmux resize-pane -Z -t1
-  fi
+  # ── Primeira vez nesta janela: cria no cwd dela ────
+  new=$(tmux split-window -h -l "${SPLIT_SIZE}%" -c "$cwd" -t "$win" \
+        -P -F '#{pane_id}')
+  tmux set-option -p -t "$new" @is_term 1
+  tmux select-pane -t "$new"
 fi

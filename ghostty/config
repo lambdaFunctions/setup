@@ -67,6 +67,6 @@ shell-integration-features = cursor,sudo,no-title
 keybind = global:cmd+j=toggle_quick_terminal
 
 quick-terminal-position = bottom
-quick-terminal-size = 80%
+quick-terminal-size = 45%,95%
 quick-terminal-animation-duration = 0.1
 
